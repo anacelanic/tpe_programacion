@@ -5,8 +5,14 @@ import java.util.List;
 
 public class Produccion {
 	
+	/*En el reality participan un conjunto de coaches, que a su vez juegan el rol de
+	jurados, y un conjunto de participantes.*/	 //---> El listado de participantes lo tiene cada Jurado/Coach
+	
+	/*La producción también almacena un
+	conjunto de temas musicales que pueden ser cantados durante el reality.*/
+	
 	private List<Cancion> canciones;
-	private List<Coach> coaches;
+	private List<Coach> coaches; 
 	
 	public Produccion() {
 		this.coaches = new ArrayList<>();
@@ -31,6 +37,7 @@ public class Produccion {
 			coaches.add(c);
 	}
 	
+	/*Listado de participantes que cumplen criterio de busqueda*/
 	public List<ParticipanteAbstracto> participantesCumplen(Criterio c) {
 		List<ParticipanteAbstracto> result = new ArrayList<>();
 		for (Coach coach : coaches) {

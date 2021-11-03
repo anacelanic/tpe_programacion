@@ -5,6 +5,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class Participante extends ParticipanteAbstracto {
+	/*De los participantes, se registra su
+	nombre, apellido, edad, géneros musicales de preferencia, idiomas en los que
+	canta y los instrumentos que toca.*/
 
 	private String apellido;
 	private double edad;
