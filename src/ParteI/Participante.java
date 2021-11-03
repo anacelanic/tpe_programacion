@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Participante {
+public class Participante extends ParticipanteAbstracto {
 
-	private String nombre;
 	private String apellido;
-	private int edad;
+	private double edad;
 	private List<String> generosMusicalesPreferentes;
 	private List<String> idiomas;
 	private List<String> instrumentos;
 	
-	public Participante(String nombre, String apellido, int edad) {
-		this.nombre = nombre;
+	public Participante(String nombre, String apellido, double edad) {
+		super(nombre);
 		this.apellido = apellido;
 		this.edad = edad;
 		this.generosMusicalesPreferentes = new ArrayList<>();
@@ -33,6 +32,7 @@ public class Participante {
 	public boolean tieneInstrumento(String instrumento) {
 		return instrumentos.contains(instrumento);
 	}
+	
 	public List<String> getInstrumentos(){
 		List<String> copia = new ArrayList<>();
 		this.instrumentos.forEach((i) -> copia.add(i));
@@ -59,7 +59,7 @@ public class Participante {
 		return apellido;
 	}
 
-	public int getEdad() {
+	public double getEdad() {
 		return edad;
 	}
 	
@@ -78,9 +78,18 @@ public class Participante {
 			generosMusicalesPreferentes.add(genero);
 	}
 	
-	public boolean cumpleCriterio(Criterio c) {
-		return c.cumple(this);
+	public List<ParticipanteAbstracto> cumpleCriterio(Criterio c){
+		List<ParticipanteAbstracto> result = new ArrayList<>();
+		if(c.cumple(this)) 
+			result.add(this);
+		return result;
 	}
+
+	@Override
+	public boolean puedeInterpretarTema(Cancion c) {
+		//return c.aceptaInterprete(this);
+	}
+	
 	
 	
 	

@@ -11,7 +11,7 @@ public class CriterioOr extends Criterio {
 	}
 	
 	@Override
-	public boolean cumple(Participante p) {
+	public boolean cumple(ParticipanteAbstracto p) {
 		return c1.cumple(p) || c2.cumple(p);
 	}
 

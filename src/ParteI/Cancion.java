@@ -17,6 +17,14 @@ public class Cancion {
 		this.instrumentosInterpretacion = new ArrayList<>();
 	}
 	
+//	public boolean aceptaInterprete(ParticipanteAbstracto e) {
+//		for (String string : generosPertenecientes) {
+//			
+//		}
+//	}
+	
+	//public boolean 
+	
 	public void addInstrumentos(String instrumento) {
 		if(!instrumentosInterpretacion.contains(instrumento))
 			instrumentosInterpretacion.add(instrumento);
@@ -25,6 +33,22 @@ public class Cancion {
 	public void addGeneroMusical(String genero) {
 		if(!generosPertenecientes.contains(genero))
 			generosPertenecientes.add(genero);
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public String getIdioma() {
+		return idioma;
+	}
+	
+	public boolean tieneGenero(String genero) {
+		return generosPertenecientes.contains(genero);
+	}
+	
+	public boolean aptoIntrumento(String instrumento) {
+		return instrumentosInterpretacion.contains(instrumento);
 	}
 
 	

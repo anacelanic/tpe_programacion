@@ -9,7 +9,7 @@ public class CriterioIdioma extends Criterio {
 	}
 
 	@Override
-	public boolean cumple(Participante p) {
+	public boolean cumple(ParticipanteAbstracto p) {
 		return p.tieneIdioma(idioma);
 	}
 

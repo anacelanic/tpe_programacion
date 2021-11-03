@@ -6,25 +6,25 @@ import java.util.List;
 public class Coach {
 	
 	protected String nombre;
-	protected List<Participante> equipo;
+	protected List<ParticipanteAbstracto> equipo;
 
 	public Coach(String nombre) {
 		this.nombre = nombre;
 		this.equipo = new ArrayList<>();
 	}
 	
-	public boolean tieneParticipante(Participante p) {
+	public boolean tieneParticipante(ParticipanteAbstracto p) {
 		return equipo.contains(p);
 	}
 	
-	public void addParticipante(Participante p) {
+	public void addParticipante(ParticipanteAbstracto p) {
 		if(!tieneParticipante(p))
 			equipo.add(p);
 	}
 	
 	public List<String> obtenerInstrumentosEquipo() {
 		List<String> result = new ArrayList<>();
-		for (Participante participante : equipo) {
+		for (ParticipanteAbstracto participante : equipo) {
 			List<String> resultParcial = participante.getInstrumentos();
 			for (String instrumento : resultParcial) {
 				if(!result.contains(instrumento))
@@ -36,7 +36,7 @@ public class Coach {
 	
 	public List<String> obtenerIdiomasEquipo() {
 		List<String> result = new ArrayList<>();
-		for (Participante participante : equipo) {
+		for (ParticipanteAbstracto participante : equipo) {
 			List<String> resultParcial = participante.getIdiomas();
 			for (String idioma : resultParcial) {
 				if(!result.contains(idioma))
@@ -48,7 +48,7 @@ public class Coach {
 	
 	public List<String> obtenerGenerosMusicalesEquipo() {
 		List<String> result = new ArrayList<>();
-		for (Participante participante : equipo) {
+		for (ParticipanteAbstracto participante : equipo) {
 			List<String> resultParcial = participante.getGenerosMusicales();
 			for (String genero : resultParcial) {
 				if(!result.contains(genero))
@@ -60,17 +60,16 @@ public class Coach {
 	
 	public int obtenerEdadPromedioEquipo() {
 		int result = 0;
-		for (Participante participante : equipo) {
+		for (ParticipanteAbstracto participante : equipo) {
 			result += participante.getEdad();
 		}
 		return result / equipo.size();
 	}
 	
-	public List<Participante> obtenerParticipantesQue(Criterio c) {
-		List<Participante> result = new ArrayList<>();
-		for (Participante p : equipo) {
-			if(p.cumpleCriterio(c))
-				result.add(p);
+	public List<ParticipanteAbstracto> obtenerParticipantesQue(Criterio c) {
+		List<ParticipanteAbstracto> result = new ArrayList<>();
+		for (ParticipanteAbstracto p : equipo) {
+			result.addAll(p.cumpleCriterio(c));
 		}
 		return result;		
 	}

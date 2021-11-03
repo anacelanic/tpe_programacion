@@ -31,8 +31,8 @@ public class Produccion {
 			coaches.add(c);
 	}
 	
-	public List<Participante> participantesCumplen(Criterio c) {
-		List<Participante> result = new ArrayList<>();
+	public List<ParticipanteAbstracto> participantesCumplen(Criterio c) {
+		List<ParticipanteAbstracto> result = new ArrayList<>();
 		for (Coach coach : coaches) {
 			result.addAll(coach.obtenerParticipantesQue(c));
 		}
