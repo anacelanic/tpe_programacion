@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Grupo extends ParticipanteAbstracto {
 	
+	/*Una banda o grupo posee un nombre, y
+	una edad .*/
+	
 	private List<ParticipanteAbstracto> participantes;
 
 	public Grupo(String nombre) {
@@ -12,16 +15,22 @@ public class Grupo extends ParticipanteAbstracto {
 		this.participantes = new ArrayList<>();
 	}
 
+	/*Se calcula como el promedio de las edades de cada uno de sus miembros*/
 	@Override
 	public double getEdad() {
 		double result = 0;
-		for (ParticipanteAbstracto p : participantes) {
-			result += p.getEdad();
+		if (participantes.size()!= 0) {
+			for (ParticipanteAbstracto p : participantes) {
+				result += p.getEdad();
+			}
+			result = result / participantes.size();
 		}
-		return result / participantes.size();
+		return result;
 	}
 
-	@Override
+	/*Los géneros de preferencia se calculan como la
+	intersección de los géneros de preferencia de todos sus miembros.*/
+	/*@Override --- Version Ana----
 	public List<String> getGenerosMusicales() {
 		List<String> result = new ArrayList<>();
 		for (ParticipanteAbstracto p : participantes) {
@@ -32,7 +41,31 @@ public class Grupo extends ParticipanteAbstracto {
 			}	
 		}
 		return result;
+	}*/
+	
+	
+	/*------- Version Lucho --------*/
+	
+	@Override
+	public List<String> getGenerosMusicales() {
+		List<String> listaTemporal = new ArrayList<>();
+		for (ParticipanteAbstracto participante : participantes) { 
+			for (String genero : participante.getGenerosMusicales()) {
+				if (!listaTemporal.contains(genero))
+					listaTemporal.add(genero); //Por cada participante llena la lista tempral de generos sin repetidos
+			}
+		}
+		for (Sring generoTemporal : listaTempral) {
+			for (ParticipanteAbstracto participante : participantes) {
+				if (!participante.tieneGeneroMusical(generoTemporal)) {
+					listaTemporal.remove(generoTemporal); //Quita el genero que no estuvo en el paticipante
+					break; 	//Rompe el for del participante donde esta y continua con el siguiente generoTemporal
+				}
+			}
+		}
+		return listaTemporal;
 	}
+	
 
 	@Override
 	public boolean tieneGeneroMusical(String genero) {
@@ -42,7 +75,12 @@ public class Grupo extends ParticipanteAbstracto {
 		}
 		return true;
 	}
-
+	
+	
+	/*En el caso de los
+	idiomas que pueden interpretar una banda o grupo se considera la unión
+	de los idiomas de todos sus miembros (no pueden existir repetidos), lo
+	mismo ocurre para los instrumentos que puede tocar una banda.*/
 	@Override
 	public List<String> getIdiomas() {
 		List<String> result = new ArrayList<>();
@@ -55,6 +93,28 @@ public class Grupo extends ParticipanteAbstracto {
 		}
 		return result;
 	}
+	
+	
+	/*---------- Version Lucho ---------------*/
+//	@Override
+//	public List<String> getIdiomas(){
+//		List<String> listaTemporal = new ArrayList<>();
+//		for (ParticipanteAbstracto participante : participantes) {
+//			for (String idioma : participante.getIdiomas())
+//				if (!listaTemporal.contains(idioma))
+//					listaTemporal.add(idioma);
+//		}
+//		for (String idiomaTemporal : listaTemporal) {
+//			for (ParticipanteAbstracto participante : participantes)
+//				if (!participante.tieneIdioma(idiomaTemporal)) {
+//					listaTemporal.remove(idiomaTemporal);
+//					break;
+//				}
+//		}
+//		return listaTemporal;		
+//	}
+	
+	
 
 	@Override
 	public List<String> getInstrumentos() {
