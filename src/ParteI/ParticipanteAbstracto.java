@@ -10,6 +10,10 @@ public abstract class ParticipanteAbstracto {
 		this.nombre = nombre;
 	}
 	
+	public String getNombre() {
+		return nombre;
+	}
+	
 	public abstract double getEdad();
 	
 	public abstract List<String> getGenerosMusicales();
@@ -28,4 +32,12 @@ public abstract class ParticipanteAbstracto {
 	
 	public abstract boolean puedeInterpretarTema(Cancion c);
 
+	public boolean equals(Object o) {
+		try {
+			ParticipanteAbstracto that = (ParticipanteAbstracto) o;
+			return getNombre().equals(that.getNombre());
+		} catch (Exception e) {
+			return false;
+		}
+	}
 }

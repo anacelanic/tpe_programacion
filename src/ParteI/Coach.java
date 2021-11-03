@@ -6,16 +6,16 @@ import java.util.List;
 public class Coach {
 	/*Cada coach/jurado tiene un listado de participantes asignados como equipo propio.*/
 	
-	public String nombre;
-	public List<ParticipanteAbstracto> equipo;
+	private String nombre;
+	private List<ParticipanteAbstracto> equipo;
 	
 	/*Uno de los jurados se puso exigente*/
-	public Criterio comportamiento;
+	private Criterio comportamiento;
 
 	public Coach(String nombre) {
 		this.nombre = nombre;
 		this.equipo = new ArrayList<>();
-		this.comportamiento = new CriterioSiempreTrue();
+		this.comportamiento = null; 
 	}
 	
 	public void setCriterioExigencia(Criterio criterio) {
@@ -31,10 +31,14 @@ public class Coach {
 	}
 	
 	public void addParticipante(ParticipanteAbstracto p) {
-		if(!tieneParticipante(p) && comportamiento.cumple(p))
-			/*Preguntar ---> En el caso de la exigencia del jurado, se debe pasar el criterio en el AddParticipante o en el setComportamiento*/
-			/*Preguntar ---> Esta bien tener una funcion que sólo haga el Contains , o utilizar el contains en el IF?*/
-			equipo.add(p);
+		if (comportamiento == null) {
+			if (!tieneParticipante(p)) 
+				equipo.add(p);
+			}
+		else
+			if (!tieneParticipante(p) && comportamiento.cumple(p))
+				equipo.add(p);
+			
 	}
 	
 	/*Listado de todos los instrumentos que pueden tocar los participantes de su equipo (no

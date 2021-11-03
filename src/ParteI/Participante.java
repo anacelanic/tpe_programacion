@@ -93,6 +93,16 @@ public class Participante extends ParticipanteAbstracto {
 		//return c.aceptaInterprete(this);
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+		try {
+			Participante that = (Participante) o;
+			return super.equals(that) && getApellido().equals(that.getApellido());
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
 	
 	
 	
