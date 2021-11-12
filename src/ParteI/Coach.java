@@ -90,10 +90,12 @@ public class Coach {
 	
 	public double obtenerEdadPromedioEquipo() {
 		double result = 0;
-		for (ParticipanteAbstracto participante : equipo) {
-			result += participante.getEdad();
+		if (equipo.size() > 0) {
+			for (ParticipanteAbstracto participante : equipo) 
+				result += participante.getEdad();
+			result = result / equipo.size();
 		}
-		return result / equipo.size();
+		return result;
 	}
 	
 	/*Listado de participantes que cumplen criterio de busqueda*/
